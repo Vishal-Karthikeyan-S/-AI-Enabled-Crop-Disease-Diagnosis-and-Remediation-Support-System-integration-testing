@@ -6,6 +6,10 @@ router = APIRouter(prefix="/api", tags=["History"])
 
 @router.get("/history")
 def get_history():
+    """
+    Fetch the history of all uploaded media and their diagnosis results.
+    Returns a list of records sorted by creation time (newest first).
+    """
     db = SessionLocal()
     try:
         # Fetch all media records ordered by creation time (descending)

@@ -3,6 +3,9 @@ from app.models.media import Media
 import time
 
 
+# Synchronous ML Task
+# This function simulates the Machine Learning processing pipeline.
+# In a real production environment, this would likely be offloaded to a worker queue (like Celery).
 def process_ml(media_id, file_path):
 
     db = SessionLocal()

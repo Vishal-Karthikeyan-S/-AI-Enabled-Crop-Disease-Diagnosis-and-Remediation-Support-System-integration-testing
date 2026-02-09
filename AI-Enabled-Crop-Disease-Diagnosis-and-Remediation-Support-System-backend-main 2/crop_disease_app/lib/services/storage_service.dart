@@ -12,6 +12,8 @@ class StorageService {
   Database? _database;
 
   Future<Database> get database async {
+    // Web does not support standard path-based SQLite.
+    // We handle Web persistence via memory or LocalStorage in other layers.
     if (kIsWeb) {
       throw Exception("SQLite not supported on Web in this configuration. Use Backend.");
     }

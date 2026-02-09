@@ -4,6 +4,9 @@ from app.models.media import Media
 import time
 
 
+# Celery Worker Task for ML
+# This is an alternative implementation using Celery for asynchronous processing.
+# It is used when the system is configured for high-scale background processing.
 @celery.task
 def process_ml(media_id, file_path):
 

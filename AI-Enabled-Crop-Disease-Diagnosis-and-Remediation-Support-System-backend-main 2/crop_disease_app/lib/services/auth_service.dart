@@ -20,7 +20,8 @@ class AuthService extends ChangeNotifier {
   bool get isLoggedIn => _isLoggedIn;
   UserModel? get currentUser => _currentUser;
 
-  // Load user session from storage
+  // Load user session from shared preferences
+  // This allows the user to stay logged in across app restarts.
   Future<void> _loadUserSession() async {
     _isLoggedIn = _prefs.getBool(_keyIsLoggedIn) ?? false;
 

@@ -21,7 +21,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (kIsWeb) {
-    // Initialize FFI for web
+    // Initialize FFI for web (Required for sqflite on Web, though we mostly use memory/backend)
     databaseFactory = databaseFactoryFfiWeb;
   }
 
@@ -39,6 +39,7 @@ void main() async {
   final authService = AuthService(prefs);
 
   // Start auto-sync service (if enabled)
+  // This background service periodically checks for pending uploads
   if (preferencesService.isAutoSyncEnabled()) {
     syncService.startAutoSync(interval: const Duration(minutes: 5));
   }
@@ -61,6 +62,7 @@ void main() async {
           ),
           update: (context, connectivity, previous) {
             // Trigger sync when connectivity changes to online
+            // This is the "Auto-Sync" feature in action.
             if (connectivity.isOnline && previous != null) {
               previous.syncPendingItems();
             }

@@ -7,8 +7,8 @@ class ConnectivityProvider with ChangeNotifier {
   bool _isOnline = false;
   StreamSubscription<ConnectivityResult>? _connectivitySubscription;
 
-  bool get isOnline => _isOnline;
   ConnectivityResult get connectivityResult => _connectivityResult;
+  bool get isOnline => _isOnline; // Public getter for easy access in UI/Logic
 
   ConnectivityProvider() {
     _initConnectivity();
@@ -29,6 +29,8 @@ class ConnectivityProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // Listen to stream of connectivity changes
+  // This allows the app to react instantly when the user goes offline or comes back online.
   void _listenToConnectivityChanges() {
     _connectivitySubscription = Connectivity().onConnectivityChanged.listen(
       (ConnectivityResult result) {

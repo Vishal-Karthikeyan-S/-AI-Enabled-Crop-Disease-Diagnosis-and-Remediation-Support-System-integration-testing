@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Information Header (Profile + Connectivity Status)
                 _buildHeader(
                   context,
                   authService: authService,

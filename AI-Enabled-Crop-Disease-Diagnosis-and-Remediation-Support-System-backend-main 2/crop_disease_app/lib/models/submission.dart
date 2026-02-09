@@ -1,11 +1,11 @@
 enum MediaType { image, video }
 
 enum SubmissionStatus {
-  saved, // Saved locally, not uploaded yet
-  uploading, // Currently uploading
-  submitted, // Successfully uploaded
-  failed, // Upload failed
-  diagnosed, // Diagnosis result received
+  saved, // Saved locally (offline), waiting for connection
+  uploading, // Currently uploading to backend
+  submitted, // Successfully uploaded to backend
+  failed, // Upload failed (will be retried)
+  diagnosed, // Diagnosis result received from ML
 }
 
 class Submission {

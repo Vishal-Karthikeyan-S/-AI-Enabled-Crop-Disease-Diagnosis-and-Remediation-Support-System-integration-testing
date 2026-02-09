@@ -14,7 +14,11 @@ class Media(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # ⭐ NEW FIELDS (VERY IMPORTANT)
+    # Result of the diagnosis (e.g., "Leaf Blight")
     result = Column(String, nullable=True)
+    # Confidence score of the diagnosis (e.g., "98%")
     confidence = Column(String, nullable=True)
     
+    # Filename of the stored image.
+    # Frontend constructs the URL using this: BASE_URL + /uploads/ + file_path
     file_path = Column(String, nullable=True)
