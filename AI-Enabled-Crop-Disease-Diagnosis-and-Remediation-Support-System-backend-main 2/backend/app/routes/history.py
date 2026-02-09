@@ -5,7 +5,7 @@ from app.models.media import Media
 router = APIRouter(prefix="/api", tags=["History"])
 
 @router.get("/history")
-def get_history():
+def get_history(user_id: str = None):
     """
     Fetch the history of all uploaded media and their diagnosis results.
     Returns a list of records sorted by creation time (newest first).
@@ -13,7 +13,13 @@ def get_history():
     db = SessionLocal()
     try:
         # Fetch all media records ordered by creation time (descending)
-        history = db.query(Media).order_by(Media.created_at.desc()).all()
+        query = db.query(Media)
+        
+        # Filter by user_id if provided
+        if user_id:
+            query = query.filter(Media.user_id == user_id)
+            
+        history = query.order_by(Media.created_at.desc()).all()
         return [
             {
                 "media_id": m.media_id,

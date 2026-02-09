@@ -12,6 +12,9 @@ class Media(Base):
     status = Column(String, default="UPLOADED")
 
     created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # ⭐ NEW FIELDS
+    user_id = Column(String, index=True, nullable=True)
 
     # ⭐ NEW FIELDS (VERY IMPORTANT)
     # Result of the diagnosis (e.g., "Leaf Blight")

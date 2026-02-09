@@ -107,3 +107,51 @@ def test_static_file_serving(test_client):
     
     assert response.status_code == 200
     assert response.headers["content-type"] in ["image/jpeg", "image/png"]
+
+def test_user_isolation(test_client):
+    """TC_ISOLATION_01: Verify User Data Separation"""
+    # 1. Create two distinct users
+    user1_id = str(uuid.uuid4())
+    user2_id = str(uuid.uuid4())
+    
+    media1_id = str(uuid.uuid4())
+    media2_id = str(uuid.uuid4())
+    
+    create_dummy_image()
+    try:
+        with open(TEST_IMAGE_PATH, "rb") as f:
+            # Re-open file for second upload or just read bytes
+            file_bytes = f.read()
+            
+        # 2. Upload for User 1
+        test_client.post(
+            "/api/upload-media", 
+            files={"file": ("img1.jpg", file_bytes, "image/jpeg")},
+            data={"media_id": media1_id, "user_id": user1_id}
+        )
+        
+        # 3. Upload for User 2
+        test_client.post(
+            "/api/upload-media", 
+            files={"file": ("img2.jpg", file_bytes, "image/jpeg")},
+            data={"media_id": media2_id, "user_id": user2_id}
+        )
+        
+        # 4. Fetch History for User 1
+        resp1 = test_client.get(f"/api/history?user_id={user1_id}")
+        history1 = resp1.json()
+        ids1 = [item['media_id'] for item in history1]
+        
+        assert media1_id in ids1, "User 1 should see their own upload"
+        assert media2_id not in ids1, "User 1 should NOT see User 2's upload"
+        
+        # 5. Fetch History for User 2
+        resp2 = test_client.get(f"/api/history?user_id={user2_id}")
+        history2 = resp2.json()
+        ids2 = [item['media_id'] for item in history2]
+        
+        assert media2_id in ids2, "User 2 should see their own upload"
+        assert media1_id not in ids2, "User 2 should NOT see User 1's upload"
+        
+    finally:
+        remove_dummy_image()

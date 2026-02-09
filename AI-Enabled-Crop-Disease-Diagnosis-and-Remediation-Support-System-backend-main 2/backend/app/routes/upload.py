@@ -32,6 +32,7 @@ def get_db():
 def upload_media(
     file: UploadFile = File(...),
     media_id: str = Form(None),  # Optional client-generated ID from offline mode
+    user_id: str = Form(None),   # Optional user ID from client
     db: Session = Depends(get_db)
 ):
     # If client provides an ID (Offline Sync), use it. Otherwise, generate one (Online Direct).
@@ -63,7 +64,8 @@ def upload_media(
         media_id=media_id,
         media_type=file.content_type,
         status="UPLOADED",
-        file_path=filename  # Store just the filename, we know it's in uploads/
+        file_path=filename,  # Store just the filename, we know it's in uploads/
+        user_id=user_id      # Store the user ID
     )
 
     db.add(media)

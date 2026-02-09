@@ -60,3 +60,12 @@ AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/
 **/.flutter-plugins-dependencies
 **/.pub-cache/
 **/.pub/
+
+# Mobile Project (Scrapped)
+mobile/
+
+# Database
+*.db
+
+# Temporary Test Files
+dummy.jpg
