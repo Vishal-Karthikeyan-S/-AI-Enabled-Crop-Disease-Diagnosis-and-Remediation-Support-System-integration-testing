@@ -4,3 +4,5 @@ sqlalchemy
 python-multipart
 python-dotenv
 psycopg2-binary
+pytest
+httpx
