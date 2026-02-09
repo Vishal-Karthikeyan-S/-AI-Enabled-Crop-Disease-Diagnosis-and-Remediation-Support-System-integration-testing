@@ -1,85 +1,79 @@
-# AI-Enabled Crop Disease Diagnosis System
+# AI-Enabled Crop Disease Diagnosis & Remediation Support System
 
-This repository contains the integrated backend (FastAPI) and frontend (Flutter) for the AI-Enabled Crop Disease Diagnosis project.
+This project is a comprehensive **Offline-First** solution for diagnosing crop diseases, allowing farmers to capture images and get remediation advice even with intermittent internet connectivity.
 
-## Project Structure
+It integrates a robust **FastAPI Backend** with a responsive **Flutter Frontend**, featuring a custom **Sync Engine** that ensures data consistency across devices.
+
+## 🚀 Key Features (Integration Highlights)
+
+### 1. Offline-First Architecture
+-   **Local Queueing**: Submissions are saved locally (using SQLite on Mobile, In-Memory on Web) when offline.
+-   **Seamless Experience**: Users can continue to take photos and view history without an active connection.
+
+### 2. Intelligent Auto-Sync
+-   **Connectivity Detection**: The app automatically detects when the device comes online.
+-   **Batch Uploads**: Pending submissions are automatically uploaded in the background.
+-   **Resilience**: Failed uploads are retried automatically without user intervention.
+
+### 3. Backend Integration (FastAPI)
+-   **Deduplication**: The server handles duplicate uploads gracefully using client-generated IDs, preventing data redundancy.
+-   **Static File Serving**: Images are securely stored and served for history playback.
+-   **CORS Support**: Fully configured for Web and Mobile clients.
+
+---
+
+## 🛠 Project Structure
 
 -   `AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/backend`: **Python FastAPI Server**
--   `AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/crop_disease_app`: **Flutter Mobile Application**
+    -   Handles Uploads, AI Diagnosis (Mock/Real), and Data Persistence (PostgreSQL).
+-   `AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/crop_disease_app`: **Flutter Mobile/Web App**
+    -   Implements the UI, Camera Logic, and the **SyncService**.
 
-## Setup Instructions
+---
 
-### 1. Prerequisites
+## ⚙️ Setup & Run Instructions
 
-Ensure you have the following installed:
+### Prerequisites
 -   [Python 3.10+](https://www.python.org/downloads/)
 -   [Flutter SDK](https://docs.flutter.dev/get-started/install)
 -   [PostgreSQL](https://www.postgresql.org/download/)
 
-### 2. Backend Setup
-
-1.  Navigate to the backend directory:
+### Step 1: Backend Setup
+1.  Navigate to the backend:
     ```bash
     cd "AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/backend"
     ```
-
-2.  Create a virtual environment (optional but recommended):
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On macOS/Linux
-    .\venv\Scripts\activate   # On Windows
-    ```
-
-3.  Install dependencies:
+2.  Install dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-
-4.  Configure Environment Variables:
-    -   Create a `.env` file in the `backend` directory.
-    -   Copy the content from `.env.example` and update with your PostgreSQL credentials.
-    -   Example `.env`:
-        ```env
-        DB_NAME=crop_diagnosis_db
-        DB_USER=postgres
-        DB_PASSWORD=your_password
-        DB_HOST=localhost
-        DB_PORT=5432
-        ```
-
-5.  Run the Backend Server:
+3.  Configure Database:
+    -   Create a `.env` file (see `.env.example`).
+    -   Ensure PostgreSQL is running and the database exists (`createdb crop_diagnosis_db`).
+4.  Run Server:
     ```bash
     uvicorn app.main:app --reload --port 8000
     ```
-    The server will start at `http://127.0.0.1:8000`.
 
-### 3. Frontend Setup
-
-1.  Navigate to the frontend directory:
+### Step 2: Frontend Setup
+1.  Navigate to the app:
     ```bash
     cd "AI-Enabled-Crop-Disease-Diagnosis-and-Remediation-Support-System-backend-main 2/crop_disease_app"
     ```
-
-2.  Install Flutter dependencies:
+2.  Get dependencies:
     ```bash
     flutter pub get
     ```
-
 3.  Run the App:
-    -   **For Web (Chrome)**:
-        ```bash
-        flutter run -d chrome
-        ```
-    -   **For Mobile (Android/iOS)**:
-        Connect your device or start an emulator, then run:
-        ```bash
-        flutter run
-        ```
+    -   **Web**: `flutter run -d chrome`
+    -   **Mobile**: `flutter run`
 
-## Troubleshooting
+---
 
--   **Backend Connection**: If running on an emulator, use `10.0.2.2` instead of `localhost` or `127.0.0.1` in the app's `SyncService.dart` (though we default to `http://localhost:8000` for web).
--   **Database**: Ensure your PostgreSQL server is running and the `crop_diagnosis_db` database exists. You can create it with:
-    ```bash
-    createdb crop_diagnosis_db
-    ```
+## 🧪 Testing the Integration
+
+1.  Start the Backend and Frontend.
+2.  **Go Offline**: Disconnect your device/browser from the internet.
+3.  **Submit a Photo**: The app will save it as "Saved (not uploaded)".
+4.  **Go Online**: Reconnect to the internet.
+5.  **Watch it Sync**: The app will automatically upload the photo, and the status will change to "Uploaded" -> "Diagnosed".
