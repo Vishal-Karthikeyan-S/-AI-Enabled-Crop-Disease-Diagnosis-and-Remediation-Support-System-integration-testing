@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from fastapi import APIRouter, UploadFile, File, Depends
+from fastapi import APIRouter, UploadFile, File, Form, Depends
 from sqlalchemy.orm import Session
 
 from app.database import SessionLocal
@@ -25,10 +25,23 @@ def get_db():
 
 # ✅ Upload API
 @router.post("/upload-media")
-def upload_media(file: UploadFile = File(...), db: Session = Depends(get_db)):
-
-    # generate unique id
-    media_id = str(uuid.uuid4())
+def upload_media(
+    file: UploadFile = File(...),
+    media_id: str = Form(None),  # Optional client-generated ID
+    db: Session = Depends(get_db)
+):
+    # If client provides an ID, use it. Otherwise, generate one.
+    if media_id:
+        # Check for existing media with this ID (deduplication)
+        existing_media = db.query(Media).filter(Media.media_id == media_id).first()
+        if existing_media:
+            return {
+                "media_id": media_id,
+                "status": existing_media.status,
+                "message": "Media already exists (deduplicated)."
+            }
+    else:
+        media_id = str(uuid.uuid4())
 
     file_extension = file.filename.split(".")[-1]
     filename = f"{media_id}.{file_extension}"
