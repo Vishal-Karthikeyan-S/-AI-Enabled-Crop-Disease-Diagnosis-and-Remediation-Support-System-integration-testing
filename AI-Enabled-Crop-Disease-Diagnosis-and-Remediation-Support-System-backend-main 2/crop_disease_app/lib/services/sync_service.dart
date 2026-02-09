@@ -38,7 +38,10 @@ class SyncService {
   }
 
   // Sync all pending submissions
+  // This is the core engine of the Offline-First architecture.
+  // It iterates through local storage (or memory on Web) and retries uploads.
   Future<void> syncPendingSubmissions() async {
+    // Prevent concurrent syncs to avoid race conditions
     if (_isSyncing) {
       if (kDebugMode) {
         print('Sync already in progress, skipping');
@@ -135,11 +138,15 @@ class SyncService {
 
       var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/api/upload-media'));
       
-      // Add the submission ID as media_id for deduplication
+      // CRITICAL: Send the local submission ID to the backend.
+      // The backend uses this ID to check if it already has this file.
+      // This makes the upload idempotent (content-addressable logic).
       request.fields['media_id'] = submission.id;
 
       if (kIsWeb) {
-        // On Web, we can't use fromPath. Fetch bytes from the blob/asset URL.
+        // Special Handling for Web:
+        // Flutter Web cannot read files from a path string like mobile.
+        // We must fetch the blob data using the URL.
         final fileResponse = await http.get(Uri.parse(submission.mediaPath));
         request.files.add(http.MultipartFile.fromBytes(
           'file',

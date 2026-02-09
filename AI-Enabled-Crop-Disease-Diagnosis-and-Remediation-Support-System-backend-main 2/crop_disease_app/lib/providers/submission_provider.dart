@@ -59,7 +59,8 @@ class SubmissionProvider with ChangeNotifier {
       // Fetch from backend
       final backendHistory = await _syncService.fetchHistory();
       
-      // Merge: Keep local pending items if they aren't already in backend history
+      // Merge: Keep local pending items if they aren't already in backend history.
+      // This prevents "flicker" where a locally queue item disappears because it's not yet on the server.
       final backendIds = backendHistory.map((s) => s.id).toSet();
       final uniquePending = pendingItems.where((s) => !backendIds.contains(s.id)).toList();
       
@@ -137,6 +138,9 @@ class SubmissionProvider with ChangeNotifier {
     }
   }
 
+  // Sync items from memory.
+  // This is the source of truth for Web auto-sync, as StorageService is transient.
+  // It finds all 'saved' or 'failed' items in the current list and triggers upload.
   Future<void> syncPendingItems() async {
     final pendingSubmissions = _submissions.where((s) => 
       s.status == SubmissionStatus.saved || s.status == SubmissionStatus.failed
