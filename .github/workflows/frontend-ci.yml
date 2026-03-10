@@ -30,8 +30,8 @@ jobs:
       run: flutter pub get
 
     - name: Analyze Layout/Code
-      # Analyze but don't strictly fail on deprecations if it impacts hackathon
-      run: flutter analyze || echo "Warnings found but skipping hard failure"
+      continue-on-error: true
+      run: flutter analyze
 
     - name: Run Tests
       # If no tests exist it skips naturally depending on folder structure
