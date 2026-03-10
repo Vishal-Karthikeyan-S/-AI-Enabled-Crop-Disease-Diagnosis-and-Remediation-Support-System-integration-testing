@@ -1,0 +1,62 @@
+name: crop_disease_app
+description: AI-Enabled Crop Disease Diagnosis mobile application
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # State Management
+  provider: ^6.1.0
+  
+  # Internationalization
+  intl: ^0.20.2
+  
+  # Camera & Media
+  image_picker: ^1.0.7
+  video_player: ^2.8.2
+  
+  # Text-to-Speech
+  flutter_tts: ^4.0.2
+  
+  # Local Storage
+  sqflite: ^2.3.0
+  path: ^1.9.0
+  shared_preferences: ^2.2.2
+  
+  # Connectivity
+  connectivity_plus: ^5.0.2
+  
+  # HTTP Client
+  http: ^1.2.0
+  
+  # Utilities
+  vibration: ^1.8.4
+  uuid: ^4.3.3
+  cached_network_image: ^3.3.1
+  
+  # UI
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # Enable generation of localizations
+  generate: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+  
+  

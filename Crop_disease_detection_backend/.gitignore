@@ -1,0 +1,25 @@
+# Virtual Environment
+venv/
+.env
+# Python cache
+__pycache__/
+*.pyc
+# Upload files
+uploads/
+# OS files
+.DS_Store
+Thumbs.db
+# IDE
+.vscode/
+.idea/
+# Logs
+*.log
+.pytest_cache/
+htmlcov/
+backend/dataset/
+# Model files
+*.pth
+
+# Temp files
+*.jpg
+temp_frame.jpg
