@@ -99,7 +99,7 @@ class CropDiseaseApp extends StatelessWidget {
         '/intro': (context) => const IntroScreen(),
         '/login': (context) => const LoginScreen(),
         '/main': (context) => const MainNavigation(),
-        AppConstants.routeSplash: (context) => const SplashScreen(),
+        '/splash': (context) => const SplashScreen(),       // '/splash' not '/' to avoid home conflict
         AppConstants.routeOnboarding: (context) => const OnboardingScreen(),
         // Home should include the bottom navigation bar.
         AppConstants.routeHome: (context) => const MainNavigation(),
