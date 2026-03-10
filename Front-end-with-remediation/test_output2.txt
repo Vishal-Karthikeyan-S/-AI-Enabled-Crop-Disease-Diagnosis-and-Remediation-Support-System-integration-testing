@@ -1,0 +1,117 @@
+﻿00:00 +0: loading C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart
+00:00 +0: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease Constructor should create Disease with all fields
+00:00 +1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease Constructor should create Disease with null imagePath
+00:00 +2: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease toJson should serialize all fields correctly
+00:00 +3: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease toJson should serialize null imagePath
+00:00 +4: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease fromJson should deserialize all fields correctly
+00:00 +5: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease fromJson should handle null imagePath
+00:00 +6: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel Disease Round-trip serialization should maintain data integrity through toJson/fromJson cycle
+00:00 +7: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel Constructor should create CropModel with all fields
+00:00 +8: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel Constructor should create CropModel with null optional fields
+00:00 +9: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel toJson should serialize all fields correctly
+00:00 +10: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel toJson should serialize nested diseases
+00:00 +11: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel fromJson should deserialize all fields correctly
+00:00 +12: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel fromJson should handle null optional fields
+00:00 +13: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel Category validation should accept valid categories
+00:00 +14: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel Round-trip serialization should maintain data integrity through toJson/fromJson cycle
+00:00 +15: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/crop_model_test.dart: CropModel CropModel Round-trip serialization should maintain nested Disease data through cycle
+00:00 +16: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult DiseaseSeverity enum should have all severity levels
+00:00 +17: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult Constructor should create DiagnosisResult with all fields
+00:00 +18: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult Constructor should default isUnknown to false
+00:00 +19: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult severityColor should return green for low severity
+00:00 +20: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult severityColor should return yellow for medium severity
+00:00 +21: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult severityColor should return red for high severity
+00:00 +22: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult severityColor should return grey for unknown severity
+00:00 +23: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult severityEmoji should return correct emoji for each severity level
+00:00 +24: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult toMap should serialize all fields correctly
+00:00 +25: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult toMap should serialize isUnknown as 1 when true
+00:00 +26: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromMap should deserialize all fields correctly
+00:00 +27: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromMap should deserialize isUnknown as true when value is 1
+00:00 +28: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should deserialize API response with snake_case keys
+00:00 +29: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should set isUnknown to true when confidence is below 0.7
+00:00 +29 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should set isUnknown to true when confidence is below 0.7 [E]
+  Expected: <true>
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\models\diagnosis_result_test.dart 236:9        main.<fn>.<fn>.<fn>
+  
+00:00 +29 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should handle missing fields with defaults
+00:00 +30 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should handle null severity
+00:00 +31 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult fromJson should parse severity case-insensitively
+00:00 +32 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/diagnosis_result_test.dart: DiagnosisResult Round-trip serialization should maintain data integrity through toMap/fromMap cycle
+00:00 +33 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission MediaType enum should have image and video types
+00:00 +34 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission SubmissionStatus enum should have all status types
+00:00 +35 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission Constructor should create Submission with all fields
+00:00 +36 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission Constructor should default status to saved
+00:00 +37 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission Constructor should create Submission with optional fields
+00:00 +38 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission toMap should serialize all fields correctly
+00:00 +39 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission toMap should serialize DateTime fields as ISO8601 strings
+00:00 +40 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission fromMap should deserialize all fields correctly
+00:00 +41 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission fromMap should deserialize video media type
+00:00 +42 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission fromMap should deserialize all status types
+00:00 +43 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission copyWith should create copy with updated status
+00:00 +44 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission copyWith should create copy with all updated fields
+00:00 +45 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission copyWith should preserve original when no fields specified
+00:00 +46 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/submission_test.dart: Submission Round-trip serialization should maintain data integrity through toMap/fromMap cycle
+00:01 +47 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep TreatmentType enum should have all treatment types
+00:01 +48 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep SafetyLevel enum should have all safety levels
+00:01 +49 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep Constructor should create TreatmentStep with all fields
+00:01 +50 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep Constructor should use default values for optional fields
+00:01 +51 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep safetyEmoji should return correct emoji for each safety level
+00:01 +52 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep typeEmoji should return correct emoji for each treatment type
+00:01 +53 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep toMap should serialize all fields correctly
+00:01 +54 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep toMap should serialize empty lists as empty strings
+00:01 +55 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep toMap should serialize weatherDependent as 0 when false
+00:01 +56 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep fromMap should deserialize all fields correctly
+00:01 +57 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep fromMap should handle null safetyWarnings and ppeRequired
+00:01 +58 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep fromJson should deserialize API response with snake_case keys
+00:01 +59 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep fromJson should handle missing fields with defaults
+00:01 +60 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: TreatmentStep fromJson should handle invalid type with default
+00:01 +61 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: Treatment fromJson should deserialize Treatment with nested TreatmentSteps
+00:01 +62 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: Treatment fromJson should handle missing fields with defaults
+00:01 +63 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/treatment_step_test.dart: Treatment fromJson should handle null step arrays
+00:01 +64 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel Constructor should create UserModel with all required fields
+00:01 +65 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel Constructor should create UserModel with null optional fields
+00:01 +66 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel toJson should serialize all fields correctly
+00:01 +67 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel toJson should serialize null optional fields
+00:01 +68 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel fromJson should deserialize all fields correctly
+00:01 +69 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel fromJson should handle null optional fields
+00:01 +70 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel copyWith should create copy with updated fields
+00:01 +71 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel copyWith should preserve original fields when not specified
+00:01 +72 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/models/user_model_test.dart: UserModel Round-trip serialization should maintain data integrity through toJson/fromJson cycle
+00:02 +73 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Status transitions should start with saved status by default
+00:02 +74 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Status transitions should transition from saved to uploading
+00:02 +75 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Status transitions should transition from uploading to submitted
+00:02 +76 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Status transitions should transition from uploading to failed
+00:02 +77 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Status transitions should transition from submitted to diagnosed
+00:02 +78 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should filter submissions by status (pending)
+00:02 +79 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should filter submissions by status (uploading)
+00:02 +80 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should find submission by ID
+00:02 +81 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should return null when ID not found
+00:02 +82 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should update submission in list
+00:02 +83 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should remove submission from list
+00:02 +84 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider List operations for provider logic should add submission at beginning of list
+00:02 +85 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/providers/submission_provider_test.dart: Submission Model for Provider Failed submission handling should identify failed submissions for retry
+00:02 +86 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService Initial State should not be logged in initially
+00:02 +87 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService Initial State should have null currentUser initially
+00:02 +88 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService register should successfully register a new user
+00:02 +89 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService register should fail to register with duplicate username
+00:02 +90 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService register should fail to register with duplicate email
+00:03 +91 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService register should register user without optional fields
+00:03 +92 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService login should successfully login with correct credentials
+00:03 +93 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService login should fail to login with wrong password
+00:03 +94 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService login should fail to login with non-existent username
+00:03 +95 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService login should update lastLogin on successful login
+00:03 +96 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService loginAsGuest should successfully login as guest
+00:03 +97 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService loginAsGuest should create guest user with correct username
+00:03 +98 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService loginAsGuest should create guest user with guest email
+00:03 +99 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService loginAsGuest should create unique guest IDs
+00:03 +100 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService logout should clear session on logout
+00:04 +101 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService logout should clear guest session on logout
+00:04 +102 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService updateProfile should update user profile
+00:04 +103 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService Session Persistence should persist login session
+00:04 +104 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService ChangeNotifier should notify listeners on login
+00:04 +105 -1: C:/Users/rithv/Downloads/Software Project/Front-end-with-remediation/test/services/auth_service_test.dart: AuthService ChangeNotifier should notify listeners on logout
+00:04 +106 -1: Some tests failed.
