@@ -19,7 +19,7 @@ import 'screens/login_screen.dart';
 import 'screens/main_navigation.dart';
 import 'screens/intro_screen.dart';
 import 'screens/language_selection_screen.dart';
-import 'services/preferences_service.dart';
+import 'screens/landing_router.dart';
 
 class CropDiseaseApp extends StatelessWidget {
   const CropDiseaseApp({super.key});
@@ -61,8 +61,9 @@ class CropDiseaseApp extends StatelessWidget {
         );
       },
 
-      // Routes — show language screen only on very first launch
-      initialRoute: Provider.of<PreferencesService>(context, listen: false).hasLanguageBeenChosen() ? '/login' : '/language',
+      // Use home + LandingRouter so initial screen is decided once and never
+      // re-evaluated when LanguageProvider / ThemeProvider fire rebuilds.
+      home: const LandingRouter(),
       onGenerateRoute: (settings) {
         // Handle routes with arguments
         switch (settings.name) {
