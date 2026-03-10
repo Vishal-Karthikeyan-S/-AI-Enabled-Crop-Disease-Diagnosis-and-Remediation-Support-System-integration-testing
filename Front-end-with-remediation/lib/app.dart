@@ -18,6 +18,7 @@ import 'screens/treatment_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_navigation.dart';
 import 'screens/intro_screen.dart';
+import 'screens/language_selection_screen.dart';
 
 class CropDiseaseApp extends StatelessWidget {
   const CropDiseaseApp({super.key});
@@ -60,7 +61,7 @@ class CropDiseaseApp extends StatelessWidget {
       },
 
       // Routes
-      initialRoute: '/login',
+      initialRoute: '/language',
       onGenerateRoute: (settings) {
         // Handle routes with arguments
         switch (settings.name) {
@@ -92,6 +93,7 @@ class CropDiseaseApp extends StatelessWidget {
         }
       },
       routes: {
+        '/language': (context) => const LanguageSelectionScreen(),
         '/intro': (context) => const IntroScreen(),
         '/login': (context) => const LoginScreen(),
         '/main': (context) => const MainNavigation(),
