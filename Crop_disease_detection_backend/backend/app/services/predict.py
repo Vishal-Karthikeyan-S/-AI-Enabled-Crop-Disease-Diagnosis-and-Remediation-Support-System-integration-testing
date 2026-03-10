@@ -6,7 +6,10 @@ from torchvision import transforms
 from app.services.labels import CLASS_NAMES
 from app.services.model_loader import get_model
 
-CONFIDENCE_THRESHOLD = 0.10
+# Threshold: random chance for 29 classes = 1/29 = 3.4%.
+# We set threshold to 5% — well above random, but low enough not to reject
+# legitimate multi-class predictions where confidence is spread across classes.
+CONFIDENCE_THRESHOLD = 0.05
 
 def predict_disease(image_path):
 
@@ -43,18 +46,22 @@ def predict_disease(image_path):
         confidence = confidence.item()
         predicted_class = CLASS_NAMES[predicted.item()]
 
-        # 🔴 Unknown Handling
+        # Debug: log prediction details
+        print(f"[PREDICT] index={predicted.item()} class='{predicted_class}' confidence={confidence:.4f} ({confidence*100:.1f}%)")
+
+        # Unknown Handling
         if confidence < CONFIDENCE_THRESHOLD:
+            print(f"[PREDICT] Below threshold ({CONFIDENCE_THRESHOLD}), returning Unknown")
             return {
                 "disease": "Unknown",
                 "confidence": round(confidence, 2),
                 "severity": None
             }
 
-        # 🟡 Severity Classification
-        if confidence >= 0.85:
+        # Severity Classification
+        if confidence >= 0.75:
             severity = "High"
-        elif confidence >= 0.65:
+        elif confidence >= 0.50:
             severity = "Medium"
         else:
             severity = "Low"
