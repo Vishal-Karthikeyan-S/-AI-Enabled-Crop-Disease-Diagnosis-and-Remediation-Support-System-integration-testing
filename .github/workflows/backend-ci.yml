@@ -1,0 +1,45 @@
+name: Backend CI
+
+on:
+  push:
+    paths:
+      - 'Crop_disease_detection_backend/backend/**'
+  pull_request:
+    paths:
+      - 'Crop_disease_detection_backend/backend/**'
+
+jobs:
+  test_and_build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./Crop_disease_detection_backend/backend
+        
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest httpx  # Ensure testing tools are installed
+
+    - name: Run Pytest Tests
+      run: pytest tests/
+
+    - name: Build Docker Image
+      run: docker build -t crop-ai-backend .
+      
+    - name: Run Docker Container (Sanity Check)
+      run: |
+        docker run -d -p 8000:8000 --name test-backend crop-ai-backend
+        sleep 5
+        curl --fail http://localhost:8000/health || exit 1

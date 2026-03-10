@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./Crop_disease_detection_backend/backend
+      dockerfile: Dockerfile
+    container_name: crop_ai_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Map the model artifact inside the container for dynamic loading
+      - ./models:/app/models
+    environment:
+      - MODEL_PATH=/app/models/plant_model.pth
+      - APP_ENV=production
+    restart: always
+
+  frontend:
+    build:
+      context: ./Front-end-with-remediation
+      dockerfile: Dockerfile
+    container_name: crop_ai_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  model_data:

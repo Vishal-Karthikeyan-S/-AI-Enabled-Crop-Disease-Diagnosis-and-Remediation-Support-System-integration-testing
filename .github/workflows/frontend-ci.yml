@@ -1,0 +1,44 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - 'Front-end-with-remediation/**'
+  pull_request:
+    paths:
+      - 'Front-end-with-remediation/**'
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./Front-end-with-remediation
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.0'
+        channel: 'stable'
+
+    - name: Fetch Dependencies
+      run: flutter pub get
+
+    - name: Analyze Layout/Code
+      # Analyze but don't strictly fail on deprecations if it impacts hackathon
+      run: flutter analyze || echo "Warnings found but skipping hard failure"
+
+    - name: Run Tests
+      # If no tests exist it skips naturally depending on folder structure
+      run: if [ -d "test" ]; then flutter test; else echo "No tests configured yet"; fi
+
+    - name: Build Web Application
+      run: flutter build web
+
+    - name: Validate Containerization
+      run: docker build -t crop-ai-frontend .

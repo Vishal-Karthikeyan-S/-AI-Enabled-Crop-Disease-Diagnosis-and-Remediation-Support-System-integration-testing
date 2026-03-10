@@ -1,0 +1,49 @@
+name: Model Workflow CI
+
+on:
+  push:
+    paths:
+      - 'ml_pipeline/**'
+      - 'dataset/**'
+      
+jobs:
+  train_and_save_model:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./ml_pipeline
+        
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install ML Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision numpy
+
+    - name: Run Model Training
+      # Optional argument or condition depending on if there is data available locally
+      run: |
+        # Only run if dataset folders exist for training (to avoid CI failing on empty pulls)
+        if [ -d "dataset" ]; then
+          python train_model.py
+        else
+          echo "No dataset found. Skipping model execution."
+        fi
+
+    - name: Save Learned Artifact to Workflow
+      uses: actions/upload-artifact@v4
+      with:
+        name: crop-disease-plant-model
+        # Checks if artifact was created and exports it
+        path: |
+          models/plant_model.pth
+          **/*.pth
