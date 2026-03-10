@@ -116,8 +116,8 @@ class LanguageSelectionScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    // Go directly to Splash Screen which handles first launch logic (Login/Onboarding)
-                    Navigator.pushReplacementNamed(context, AppConstants.routeSplash);
+                    // Go directly to Login — Skip SplashScreen to avoid auto-redirect
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

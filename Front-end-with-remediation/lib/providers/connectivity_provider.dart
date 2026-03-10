@@ -13,7 +13,8 @@ class ConnectivityProvider with ChangeNotifier {
 
   bool get isNetworkOn => _isOnline;
   bool get isServerAvailable => _isServerReachable;
-  bool get isOnline => _isOnline && _isServerReachable;
+  // isOnline now means "device has internet", not "backend is reachable"
+  bool get isOnline => _isOnline;
   ConnectivityResult get connectivityResult => _connectivityResult;
 
   ConnectivityProvider({this.baseUrl = 'http://127.0.0.1:8001'}) {
