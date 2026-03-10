@@ -33,7 +33,7 @@ void main() async {
   // Use the same host as the page (localhost, 127.0.0.1, or a specific IP)
   String host = kIsWeb ? Uri.base.host : '10.0.2.2';
   if (host == '0.0.0.0' || host.isEmpty) host = 'localhost';
-  final String apiBaseUrl = 'http://$host:8001';
+  final String apiBaseUrl = 'http://$host:8000';
   
   if (kDebugMode) {
     print('Backend Discovery: $apiBaseUrl');

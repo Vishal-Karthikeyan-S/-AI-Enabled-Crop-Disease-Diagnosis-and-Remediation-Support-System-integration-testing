@@ -17,7 +17,7 @@ class ConnectivityProvider with ChangeNotifier {
   bool get isOnline => _isOnline;
   ConnectivityResult get connectivityResult => _connectivityResult;
 
-  ConnectivityProvider({this.baseUrl = 'http://127.0.0.1:8001'}) {
+  ConnectivityProvider({this.baseUrl = 'http://127.0.0.1:8000'}) {
     _initConnectivity();
     _listenToConnectivityChanges();
     _startHeartbeat();

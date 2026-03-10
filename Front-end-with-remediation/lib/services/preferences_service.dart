@@ -49,4 +49,8 @@ class PreferencesService {
       _prefs.getBool(AppConstants.keyAutoSyncEnabled) ?? true;
   Future<void> setAutoSyncEnabled(bool enabled) =>
       _prefs.setBool(AppConstants.keyAutoSyncEnabled, enabled);
+
+  // Language Selection (tracks if user has intentionally chosen a language)
+  bool hasLanguageBeenChosen() => _prefs.getBool('language_chosen') ?? false;
+  Future<void> setLanguageChosen() => _prefs.setBool('language_chosen', true);
 }

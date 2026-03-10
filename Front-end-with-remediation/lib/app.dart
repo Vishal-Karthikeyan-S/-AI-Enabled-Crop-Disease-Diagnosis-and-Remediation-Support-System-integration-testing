@@ -19,6 +19,7 @@ import 'screens/login_screen.dart';
 import 'screens/main_navigation.dart';
 import 'screens/intro_screen.dart';
 import 'screens/language_selection_screen.dart';
+import 'services/preferences_service.dart';
 
 class CropDiseaseApp extends StatelessWidget {
   const CropDiseaseApp({super.key});
@@ -60,8 +61,8 @@ class CropDiseaseApp extends StatelessWidget {
         );
       },
 
-      // Routes
-      initialRoute: '/language',
+      // Routes — show language screen only on very first launch
+      initialRoute: Provider.of<PreferencesService>(context, listen: false).hasLanguageBeenChosen() ? '/login' : '/language',
       onGenerateRoute: (settings) {
         // Handle routes with arguments
         switch (settings.name) {

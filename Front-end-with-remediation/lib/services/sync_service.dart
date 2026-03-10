@@ -21,7 +21,7 @@ class SyncService {
 
   SyncService({
     required StorageService storageService,
-    this.baseUrl = 'http://127.0.0.1:8001', // Updated to match running backend
+    this.baseUrl = 'http://127.0.0.1:8000',
   }) : _storageService = storageService;
 
   // Start automatic sync service
