@@ -57,8 +57,7 @@ jobs:
         run: |
           flutter build web \
             --release \
-            --web-renderer html \
-            --dart-define=API_BASE_URL=${{ secrets.API_BASE_URL }}
+            --dart-define=API_BASE_URL="${{ secrets.API_BASE_URL }}"
 
       # ── 5. Configure GitHub Pages ──────────────────────────────────────────
       - name: Setup Pages
