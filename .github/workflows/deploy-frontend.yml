@@ -34,16 +34,23 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.4'
+          flutter-version: '3.38.9'
           channel: 'stable'
           cache: true
 
-      # ── 3. Install dependencies ────────────────────────────────────────────
+      # ── 3. Install Linux system dependencies ──────────────────────────────
+      # flutter_tts requires these on Linux CI runners
+      - name: Install Linux system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y libspeechd-dev speech-dispatcher
+
+      # ── 4. Install Flutter dependencies ────────────────────────────────────
       - name: Install Flutter dependencies
         working-directory: Front-end-with-remediation
         run: flutter pub get
 
-      # ── 4. Build Flutter Web ───────────────────────────────────────────────
+      # ── 5. Build Flutter Web ───────────────────────────────────────────────
       # API_BASE_URL points to the Render backend (set this secret in GitHub repo settings)
       - name: Build Flutter Web
         working-directory: Front-end-with-remediation
