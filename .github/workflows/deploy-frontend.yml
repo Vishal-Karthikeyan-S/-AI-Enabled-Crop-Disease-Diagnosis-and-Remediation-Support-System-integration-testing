@@ -1,0 +1,69 @@
+name: Deploy Frontend to GitHub Pages
+
+on:
+  push:
+    branches: [integ]
+    paths:
+      - 'Front-end-with-remediation/**'
+  workflow_dispatch:   # allow manual trigger
+
+# Required for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment runs at a time
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Install Flutter ─────────────────────────────────────────────────
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.4'
+          channel: 'stable'
+          cache: true
+
+      # ── 3. Install dependencies ────────────────────────────────────────────
+      - name: Install Flutter dependencies
+        working-directory: Front-end-with-remediation
+        run: flutter pub get
+
+      # ── 4. Build Flutter Web ───────────────────────────────────────────────
+      # API_BASE_URL points to the Render backend (set this secret in GitHub repo settings)
+      - name: Build Flutter Web
+        working-directory: Front-end-with-remediation
+        run: |
+          flutter build web \
+            --release \
+            --web-renderer html \
+            --dart-define=API_BASE_URL=${{ secrets.API_BASE_URL }}
+
+      # ── 5. Configure GitHub Pages ──────────────────────────────────────────
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # ── 6. Upload build output ─────────────────────────────────────────────
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Front-end-with-remediation/build/web
+
+      # ── 7. Deploy to GitHub Pages ──────────────────────────────────────────
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

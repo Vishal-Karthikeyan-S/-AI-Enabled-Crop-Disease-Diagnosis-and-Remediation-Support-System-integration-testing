@@ -29,11 +29,19 @@ void main() async {
 
   final storageService = StorageService(prefs);
   
-  // Professional Dynamic Backend Discovery: 
-  // Use the same host as the page (localhost, 127.0.0.1, or a specific IP)
-  String host = kIsWeb ? Uri.base.host : '10.0.2.2';
-  if (host == '0.0.0.0' || host.isEmpty) host = 'localhost';
-  final String apiBaseUrl = 'http://$host:8000';
+  // Production URL is injected at build time via --dart-define=API_BASE_URL=https://...
+  // Falls back to localhost:8000 for local development automatically.
+  const String _prodUrl = String.fromEnvironment('API_BASE_URL', defaultValue: '');
+  
+  final String apiBaseUrl;
+  if (_prodUrl.isNotEmpty) {
+    apiBaseUrl = _prodUrl;
+  } else {
+    // Local development: use same host as the page
+    String host = kIsWeb ? Uri.base.host : '10.0.2.2';
+    if (host == '0.0.0.0' || host.isEmpty) host = 'localhost';
+    apiBaseUrl = 'http://$host:8000';
+  }
   
   if (kDebugMode) {
     print('Backend Discovery: $apiBaseUrl');

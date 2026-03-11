@@ -1,0 +1,22 @@
+services:
+  # ─────────────────────────────────────────────
+  # FastAPI Backend Service
+  # ─────────────────────────────────────────────
+  - type: web
+    name: crop-disease-api
+    runtime: python
+    region: singapore          # closest to India
+    plan: free
+    
+    rootDir: Crop_disease_detection_backend/backend
+    
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    
+    healthCheckPath: /health
+    
+    envVars:
+      - key: MODEL_PATH
+        value: ../../models/plant_model.pth
+      - key: PYTHON_VERSION
+        value: "3.11.0"
